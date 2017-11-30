@@ -29,6 +29,28 @@ app.controller('FoodController', ['$http', function ($http){
             self.getFood();
         });
     }
+
+    self.removeFood = function(id) {
+        $http({
+            method: 'DELETE',
+            url: '/food/' + id,
+        }).then(function(response) {
+            console.log('response', response);
+            self.getFood();
+        });
+    }
+
+    function editFood() { //editFood
+        var foodToEdit = $(this).parent().data().id;//foodToEdit
+        console.log('foodToEdit', foodToEdit); //foodToEdit
+        $.ajax({
+            method: 'PUT',
+            url: '/food/' + foodToEdit //foodToEdit
+        }).then(function(response) {
+            console.log('response', response);
+            getFood(); 
+        });
+    }
     
     self.getFood();
     
