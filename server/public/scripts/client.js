@@ -40,15 +40,14 @@ app.controller('FoodController', ['$http', function ($http){
         });
     }
 
-    function editFood() { //editFood
-        var foodToEdit = $(this).parent().data().id;//foodToEdit
-        console.log('foodToEdit', foodToEdit); //foodToEdit
-        $.ajax({
+    self.editFood=function(id) { 
+        $http({
             method: 'PUT',
-            url: '/food/' + foodToEdit //foodToEdit
+            url: '/food/' + id, 
+            data: {is_hot: true}
         }).then(function(response) {
             console.log('response', response);
-            getFood(); 
+            self.getFood(); 
         });
     }
     
